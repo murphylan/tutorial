@@ -1,5 +1,6 @@
 # tutorial
-Javascript Fetch API
+    1. 学习 Javascript 入门编程，如： Fetch API
+    2. 学习搭建本地 RestFul 开发环境
 
 ## steps.
     1. 本地安装Code编辑器，如：Visual Studio Code
