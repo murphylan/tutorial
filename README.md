@@ -8,7 +8,7 @@ Full stack training
     session3-Bootstrap demo
     Session4-JavaScript Basics
     Session5-Async Programming-Callback Fns
-    Session6-Fetch API, 仔细阅读[**README.md**](step1/README.md)文档，完成练习。
+    Session6-Fetch API
     Session7-JS_Testing
 
 ### Angular
