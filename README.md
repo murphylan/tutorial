@@ -11,7 +11,7 @@ Full stack training
     Session6-Fetch API, 仔细阅读[**README.md**](step1/README.md)文档，完成练习。
     Session7-JS_Testing
 
-### Building SPA using Angular
+### Angular
 
     Session1_Angular Introduction
     Session2_Angular_Template_Data_Binding_Angular_Material
