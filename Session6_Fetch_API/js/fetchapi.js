@@ -1,126 +1,138 @@
 let studentsList = [];
-function getStudents(){
+const URL = 'http://localhost:3000/contacts';
 
-    //FetchAPI
-    //Fetch always return Promise with resolve
-    fetch('http://localhost:3000/contacts').then(response =>{
-        //console.log(response);
-        if(response.ok){
-          // console.log(response.json());
-            return response.json();
-            
+const callRestAPI = async (url, opt = {}) => {
+    return await fetch(url, opt).then(resp => {
+        if (resp.ok) {
+            return resp.json();
         }
-        else{
-            if(response.status == 404){
-                return Promise.reject(new Error('InValid URL..'))
-            }
-           else if(response.status == 500){
-                return Promise.reject(new Error('Some Internal Error Occured...'));
-            }
-           else if(response.status == 401){
-            return Promise.reject(new Error('UnAuthorized User..'));
-           }
+        return Promise.reject(new Error('Dummy error from server'));
+    });
+};
+
+const getStudents = () => callRestAPI(URL).then(resp => {
+    studentsList = [...resp];
+    showStudentsHTML();
+    return resp;
+}).catch(error => {
+    return Promise.reject(Error(error.message));
+});
+
+const showStudentsHTML = async () => {
+    let htmlString = '';
+    studentsList.forEach(student => {
+        htmlString += `
+        <tr>
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.contactno}</td>
+            <td><button class='btn btn-primary' type='button' onclick='displayModal("${student.id}","${student.name}", "${student.email}","${student.contactno}")'>Update</button></td>
+            <td ><i class='fa fa-trash' style='color:red;font-size:1.2em;cursor:pointer' onclick='deleteStudent(${student.id})'></i></td>       
+        </tr>
+		`;
+    });
+    let tableEle = document.getElementsByTagName('table')[0];
+    let tbodyEle = tableEle.getElementsByTagName('tbody')[0];
+    tbodyEle.innerHTML = htmlString;
+}
+
+function getStudentsByName(event) {
+    event.preventDefault();
+    let name = document.getElementById('name2').value;
+
+    callRestAPI(URL).then(resp => {
+        studentsList = [...resp];
+        if (name) {
+            studentsList = studentsList.filter(student => {
+                return student.name.indexOf(name) > -1;
+            });
         }
-        
-    }).then(studentsListResponse =>{
-        studentsList = studentsListResponse;
-       // console.log('studentsList', studentsList);
-       displayReposToHTML(studentsListResponse);
-    }).catch(error =>{
+        showStudentsHTML();
+        return resp;
+    }).catch(error => {
+        return Promise.reject(Error(error.message));
+    });
+}
+
+// adding student to db
+function addStudent(event) {
+    event.preventDefault();
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let contactno = document.getElementById('contactno').value;
+
+    let student = {
+        name: name,
+        email: email,
+        contactno: contactno
+    }
+
+    callRestAPI(URL, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(student)
+    }).then(resp => {
+        console.log('addedStudent -->', resp);
+        return resp;
+    }).catch(error => {
         let errorEle = document.getElementById('errMessage');
         errorEle.innerText = error.message;
-    })
-
-}
-
-
-function displayReposToHTML(studentsListResponse){
-    //logic
-    //console.log('Response',repositoriesList);
-  // let tableEle =  document.getElementById('repo-list-table');
-    let tableEle = document.getElementsByTagName('table')[0];
-
-    let tbodyEle = tableEle.getElementsByTagName('tbody')[0];
-  //console.log(tbodyEle);
-    let tbodyEleInnerHTMLString = '';
-
-    studentsListResponse.forEach(student =>{
-   //     console.log(repo.web_url + '--'+repo.owner.username );
-     tbodyEleInnerHTMLString += `
-                <tr>
-                    <td>${student.name}</td>
-                    <td>${student.email}</td>
-                    <td>${student.contactno}</td>
-                    <td><button class='btn btn-primary'>Update</button></td>
-                    <td ><i class='fa fa-trash' style='color:red;font-size:1.2em;cursor:pointer' onclick='deleteStudent(${student.id})'></i></td>
-                    </tr>
-     `;   
+        return Promise.reject(Error(error.message));
     });
 
-    tbodyEle.innerHTML = tbodyEleInnerHTMLString;
-   
-    
 }
 
+function deleteStudent(id) {
+    studentsList = studentsList.filter(student => {
+        return student.id !== id;
+    });
+    
+    callRestAPI(URL + `/${id}`, {
+        method: 'DELETE'
+    }).then(resp => {
+        console.log('result from delete', resp);
+        return resp;
+    }).catch(error => {
+        return Promise.reject(Error(error.message));
+    });
 
-//adding student to db
-function addStudent(event){
+    showStudentsHTML();
+}
+
+function displayModal(id, name, email, contactno) {
+    $('#myModal').modal();
+    $('#id1').attr('value', id);
+    $('#name1').attr('value', name);
+    $('#email1').attr('value', email);
+    $('#contactno1').attr('value', contactno);
+}
+
+function updateStudent(event) {
     event.preventDefault();
-  //  console.log('addStudent');
- let name =  document.getElementById('name').value;
- let email = document.getElementById('email').value;
- let contactno = document.getElementById('contactno').value;
+    let id = document.getElementById('id1').value;
+    let name = document.getElementById('name1').value;
+    let email = document.getElementById('email1').value;
+    let contactno = document.getElementById('contactno1').value;
 
- let student = {
-     name : name,
-     email : email,
-     contactno: contactno
- }
+    let student = {
+        name: name,
+        email: email,
+        contactno: contactno
+    }
+    callRestAPI(URL + `/${id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(student)
+    }).then(resp => {
+        console.log('result from update', resp);
+        getStudents();
+        return resp;
+    }).catch(error => {
+        return Promise.reject(Error(error.message));
+    });
 
- //console.log(name + ' --' + email + " ---" + contactno);
-  fetch('http://localhost:3000/contacts',{
-      method: 'POST',
-      headers:{
-        'content-type': 'application/json'
-      },
-      body:JSON.stringify(student)
-  }).then(response =>{
-      if(response.ok){
-          return response.json();
-      }
-      else{
-          return Promise.reject(new Error('Some internal error occured...'))
-      }
-  }).then(addedStudent =>{
-      console.log('addedStudent -->', addedStudent);
-    //   let tableEle = document.getElementsByTagName('table')[0];
-
-    //   let tbodyEle = tableEle.getElementsByTagName('tbody')[0];
-
-    //   console.log(tbodyEle.innerHTML);
-        let tbodyEle = document.getElementById('table-body');
-        console.log(tbodyEle);
-        
-      
-      
-  }).catch(error=>{
-    //ADd this to html
-    let errorEle = document.getElementById('errMessage');
-        errorEle.innerText = error.message;
-  })
-}
-
-function deleteStudent(id){
-    console.log('delete Student--',id);
-    
-    fetch(`http://localhost:3000/contacts/${id}`,{
-        method:'DELETE'
-    }).then(response =>{
-        if(response.ok){
-            return response.json();
-        }
-    }).then(result =>{
-        console.log('result from delete',result);
-        //write the code for DOM manipulation
-    })
 }
