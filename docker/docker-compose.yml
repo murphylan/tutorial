@@ -1,0 +1,41 @@
+version: '3'
+services:
+   mysql-server:
+      container_name: mysql-server
+      image: mysql:5.7
+      volumes:
+       - ./mysqldb:/var/lib/mysql
+      environment:
+         MYSQL_ROOT_PASSWORD: mysql123
+         MYSQL_DATABASE: my_db
+         MYSQL_USER: root
+      ports:
+      - 3306:3306
+      expose:
+      - 3306
+   mongo-server:
+      container_name: mongo-server
+      image: mongo:4.0.8-xenial
+      environment:
+         MONGO_INITDB_ROOT_USERNAME: root_app
+         MONGO_INITDB_ROOT_PASSWORD: root123
+         MONGO_DATABASE: mymongo
+      volumes:
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
+      - ./mongodb/data/db:/data/db
+      ports:
+      - 27017:27017
+      expose:
+      - 27017
+   rabbitmq:
+      image: rabbitmq:management
+      container_name: rabbitmq
+      command: rabbitmq-server
+      ports:
+      - 15672:15672
+      - 5672:5672
+      expose:
+      - 5672
+      - 15672
+volumes:
+    db_data: {}
