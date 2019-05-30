@@ -3,13 +3,13 @@ Full stack training
 
 ### Building Responsive and Interactive Websites
 
-    Session1-Creating Profile Page
-    Session2-Responsive Web Design
-    session3-Bootstrap demo
-    Session4-JavaScript Basics
-    Session5-Async Programming-Callback Fns
-    Session6-Fetch API
-    Session7-JS_Testing
+    Session1_Creating Profile Page
+    Session2_Responsive Web Design
+    Session3_Bootstrap Demo
+    Session4_JavaScript Basics
+    Session5_Async Programming-Callback Fns
+    Session6_Fetch API
+    Session7_JS_Testing
 
 ### Angular
 
@@ -41,6 +41,13 @@ Full stack training
     Session15_Spring Boot_Zuul API Gateway
     Session16_Spring_RabbitMQ
     Session17_RabbitMQ_Zipkin
+
+### Docker
+
+    Session01_Docker_Image
+    Session02_Docker_Compose
+    Session03_Docker_Compose_(Mysql, MongoDb, Rabbit_MQ)
+    Session04_Docker_Compose_Spring_Cloud_And_Angular
 
 
 ©2019 http://docedit.cn/ WeChat ID: Grails1
