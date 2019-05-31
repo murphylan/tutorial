@@ -1,0 +1,76 @@
+body{
+    margin:0;
+}
+
+header{
+    padding:10px;
+}
+
+section{
+    
+    padding:10px;
+    padding-top:180px;
+    background-color:lightgray  !important;
+    border:1px solid darkgray;
+    font-size: 20px;
+}
+
+#mentorsection{
+    text-align: center;
+    background-color: bisque;
+    color:navy;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-image: url('../images/mentor-bg.jpg');
+    height: 600px;
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+img{
+    width:150px;
+    height:180px;
+    border-radius:75px;
+}
+
+#skillsetsection{
+    
+    padding : 50px 15px 10px 20px;
+    color:brown;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url('../images/skillset-bg.jpg');
+    height:500px;
+}
+.content{
+    color:coral;
+}
+
+footer{
+    padding:15px;
+}
+
+ul{
+    color: red;
+}
+
+a{
+    border:1px solid navy;
+    padding:10px;
+    display:block;
+    /* margin-top:15px; */
+    width : 150px;
+    margin:auto;
+    border-radius: 5px;
+}
+
+/* #ulid{
+    color:green;
+} */
+.ulclass2{
+    color:purple !important;
+}
+.ulclass{
+    color:blue ;
+} 
+
+
+
