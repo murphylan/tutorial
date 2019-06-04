@@ -43,12 +43,13 @@
 
 1. https://css-tricks.com/almanac/properties/m/margin/
 2. https://www.w3.org/TR/2017/REC-html52-20171214/introduction.html#a-quick-introduction-to-html
+3. https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-background
 
-3. git installation : https://git-scm.com/
 
 ## Try Out 
 
 1. Adding icon to the page
 2. Add a brand-logo to the header
 3. Try out differnt font styles (families)
+4. Use flex to decorate the page
 
