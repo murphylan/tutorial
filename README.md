@@ -30,17 +30,18 @@ Full stack training
     Session04_SpringWebMVC_CRUD
     Session05_SpringDAO_Hibernate
     Session06_Spring Boot_RESTful Web Services
-    Session07_Testing Restful Services_CI
-    Session08_AOP
-    Session09_Working With NoSQL
-    Session10_Spring_JWT_Demo
-    Session11_Containerizing Spring Boot App(Docker)
-    Session12_Micro Services _ Spring Boot
-    Session13_Spring_Eureka_Ribbon_Feign
-    Session14_SpringBoot_Swagger
-    Session15_Spring Boot_Zuul API Gateway
-    Session16_Spring_RabbitMQ
-    Session17_RabbitMQ_Zipkin
+    Session07_Spring Boot_Consuming a RESTful Web Service
+    Session08_Testing Restful Services_CI
+    Session09_AOP
+    Session10_Working With NoSQL
+    Session12_Spring_JWT_Demo
+    Session13_Containerizing Spring Boot App(Docker)
+    Session14_Micro Services _ Spring Boot
+    Session15_Spring_Eureka_Ribbon_Feign
+    Session16_SpringBoot_Swagger
+    Session17_Spring Boot_Zuul API Gateway
+    Session18_Spring_RabbitMQ
+    Session18_RabbitMQ_Zipkin
 
 ### Docker
 
