@@ -34,13 +34,13 @@ Full stack training
     Session08_Testing Restful Services_CI
     Session09_AOP
     Session10_Working With NoSQL
-    Session12_Spring_JWT_Demo
-    Session13_Containerizing Spring Boot App(Docker)
-    Session14_Micro Services _ Spring Boot
-    Session15_Spring_Eureka_Ribbon_Feign
-    Session16_SpringBoot_Swagger
-    Session17_Spring Boot_Zuul API Gateway
-    Session18_Spring_RabbitMQ
+    Session11_Spring_JWT_Demo
+    Session12_Containerizing Spring Boot App(Docker)
+    Session13_Micro Services _ Spring Boot
+    Session14_Spring_Eureka_Ribbon_Feign
+    Session15_SpringBoot_Swagger
+    Session16_Spring Boot_Zuul API Gateway
+    Session17_Spring_RabbitMQ
     Session18_RabbitMQ_Zipkin
 
 ### Docker
